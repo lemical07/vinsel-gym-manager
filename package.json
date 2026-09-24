@@ -1,0 +1,28 @@
+{
+  "name": "vinsel-gym-manager",
+  "version": "1.0.0",
+  "description": "````\r vinsel-gym-manager/\r ├── .env \r ├── .env.example\r ├── .gitignore\r ├── package.json\r ├── README.md\r ├── schema.sql\r ├── index.js                      -> menú principal del CLI\r ├── config/\r │ └── database.js                  ->pool de conexión mysql2\r ├── models/\r │ ├── Cliente.js\r │ ├── PlanEntrenamiento.js\r │ ├── Contrato.js\r │ ├── SeguimientoFisico.js\r │ ├── PlanNutricion.js\r │ ├── AlimentoRegistro.js\r │ └── Pago.js\r ├── repositories/                   ->patrón Repository\r │ ├── Repository.js \r │ ├── ClienteRepository.js\r │ ├── PlanRepository.js\r │ ├── ContratoRepository.js\r │ ├── SeguimientoRepository.js\r │ ├── NutricionRepository.js\r │ └── PagoRepository.js\r ├── factories/ (patrón Factory)\r │ ├── ClienteFactory.js\r │ ├── ContratoFactory.js\r │ └── PlanFactory.js\r ├── services/                        ->lógica de negocio, incluye las transacciones\r │ ├── ClienteService.js\r │ ├── PlanService.js\r │ ├── ContratoService.js\r │ ├── SeguimientoService.js\r │ ├── NutricionService.js\r │ └── FinanzasService.js\r ├── commands/                         ->interacción con inquirer/chalk\r │ ├── menuPrincipal.js\r │ ├── clientes.command.js\r │ ├── planes.command.js\r │ ├── seguimiento.command.js\r │ ├── nutricion.command.js\r │ └── finanzas.command.js\r └── utils/\r └── validators.js\r ````",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lemical07/vinsel-gym-manager.git"
+  },
+  "keywords": [],
+  "author": "lemical07",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/lemical07/vinsel-gym-manager/issues"
+  },
+  "homepage": "https://github.com/lemical07/vinsel-gym-manager#readme",
+  "dependencies": {
+    "chalk": "^6.0.0",
+    "dayjs": "^1.11.23",
+    "dotenv": "^18.0.3",
+    "inquirer": "^14.2.2",
+    "mysql2": "^3.24.4"
+  }
+}
