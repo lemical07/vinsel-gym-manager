@@ -1,4 +1,6 @@
 # VinSel Gym Manager
+
+![Diagrama ER](docs/diagrama-er.png)
 ````
 vinsel-gym-manager/
 ├── .env 
@@ -9,7 +11,9 @@ vinsel-gym-manager/
 ├── schema.sql
 ├── index.js                      -> menú principal del CLI
 ├── config/
-│ └── database.js                  ->pool de conexión mysql2
+│ └── database.js
+├── docs/
+│ └── diagrama-er.png                  
 ├── models/
 │ ├── Cliente.js
 │ ├── PlanEntrenamiento.js
