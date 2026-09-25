@@ -1,6 +1,6 @@
-import Cliente from '../models/Cliente.js';
+const Cliente = require('../models/Cliente');
 
-export default class ClienteFactory {
+class ClienteFactory {
   static crear(datosCrudos) {
     const {
       nombre,
@@ -23,3 +23,5 @@ export default class ClienteFactory {
     );
   }
 }
+
+module.exports = ClienteFactory;
