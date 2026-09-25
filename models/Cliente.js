@@ -102,3 +102,4 @@ class Cliente{
     get fecha_registro(){return this.#fecha_registro};
     get estado(){return this.#estado};
 }
+module.exports = Cliente;
