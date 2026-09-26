@@ -5,11 +5,6 @@ const planRepository = new PlanRepository();
 
 class PlanService {
   static async crear(datosCrudos) {
-    const planExistente = await planRepository.buscarPorNombre(datosCrudos.nombre);
-
-    if (planExistente) {
-      throw new Error(`❌ Ya existe un plan de entrenamiento con ese nombre, "${datosCrudos.nombre}"`);
-    }
     const plan = PlanFactory.crear(datosCrudos);
     return planRepository.crear(plan);
   }
@@ -31,13 +26,6 @@ class PlanService {
 
   static async actualizar(id, datosCrudos) {
     await this.buscarPorId(id);
-
-    const planMismoNombre = await planRepository.buscarPorNombre(datosCrudos.nombre);
-
-    if (planMismoNombre && planMismoNombre.id !== id) {
-      throw new Error(`❌ Ya existe otro Plan  registrado el nombre "${datosCrudos.nombre}"`);
-    }
-
     const planActualizado = PlanFactory.crear(datosCrudos);
     planActualizado.asignarId(id);
     await planRepository.actualizar(id, planActualizado);

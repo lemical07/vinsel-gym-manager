@@ -32,11 +32,6 @@ class PlanesEntrenamiento {
     const [resultado] = await conexion.query('DELETE FROM planes_entrenamiento WHERE id = ?', [id]);
     return resultado;
     }
-    //validacion por nombre
-    async buscarPorNombre(nombre) {
-    const [resultado] = await conexion.query('SELECT * FROM planes_entrenamiento WHERE nombre = ?', [nombre]);
-    return resultado[0];
-    }
 }   
 
 

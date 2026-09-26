@@ -77,6 +77,7 @@ async function listarPlanEntrenamiento() {
             console.log('⚠️  No se encontraron Planes de Entrenamiento en el registro...');
         }
         else{
+            console.clear();
             console.table(
                 planes.map((pe) => ({
                     id: pe.id,
