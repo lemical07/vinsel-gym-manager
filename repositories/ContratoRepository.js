@@ -1,8 +1,8 @@
 const conexion = require('../config/database');
 
 class Contratos {
-    async crear(contrato) {
-        const [resultado] = await conexion.query(
+    async crear(contrato, conexionExterna = conexion) {
+        const [resultado] = await conexionExterna.query(
             `INSERT INTO contratos (cliente_plan_id, condiciones, duracion_semanas, precio, fecha_inicio, fecha_fin, estado)
              VALUES (?, ?, ?, ?, ?, ?, ?)`,
             [contrato.cliente_plan_id, contrato.condiciones, contrato.duracion_semanas, contrato.precio, contrato.fecha_inicio, contrato.fecha_fin,  contrato.estado]

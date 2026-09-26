@@ -1,8 +1,8 @@
 const conexion = require('../config/database');
 
 class ClientePlan {
-    async crear(plan) {
-        const [resultado] = await conexion.query(
+    async crear(plan, conexionExterna = conexion) {
+        const [resultado] = await conexionExterna.query(
             `INSERT INTO cliente_plan (cliente_id, plan_id, fecha_asignacion, estado)
              VALUES (?, ?, ?, ?)`,
             [plan.cliente_id, plan.plan_id, plan.fecha_asignacion, plan.estado]
