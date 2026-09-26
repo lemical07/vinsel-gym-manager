@@ -1,6 +1,6 @@
 class Contratos{
     #id;
-    #clientePlan_id;
+    #cliente_plan_id;
     #condiciones;
     #duracion_semanas;
     #precio;
@@ -8,14 +8,14 @@ class Contratos{
     #fecha_fin;
     #estado;
 
-    constructor(clientePlan_id, condiciones, duracion_semanas, precio, fecha_inicio, fecha_fin, estado){
-        if (!clientePlan_id || typeof clientePlan_id !== 'number' || !Number.isInteger(clientePlan_id)) {
+    constructor(cliente_plan_id, condiciones, duracion_semanas, precio, fecha_inicio, fecha_fin, estado){
+        if (!cliente_plan_id || typeof cliente_plan_id !== 'number' || !Number.isInteger(cliente_plan_id)) {
          throw new Error('❌ El id del cliente es obligatorio y debe ser un número entero');
         }
-        if (clientePlan_id <= 0) {
+        if (cliente_plan_id <= 0) {
             throw new Error('❌ El id del cliente debe ser un número positivo');
         }
-        this.#clientePlan_id = clientePlan_id;
+        this.#cliente_plan_id = cliente_plan_id;
 
         //condiciones:
         if(condiciones !== undefined && condiciones !== null && condiciones !== ''){
@@ -80,7 +80,7 @@ class Contratos{
     }   
 
     get id(){return this.#id};     
-    get clientePlan_id(){return this.#clientePlan_id};
+    get cliente_plan_id(){return this.#cliente_plan_id};
     get condiciones(){return this.#condiciones};
     get duracion_semanas(){return this.#duracion_semanas};
     get precio(){return this.#precio};
