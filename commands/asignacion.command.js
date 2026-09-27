@@ -27,6 +27,7 @@ async function menuAsignacion() {
                 { name: '+ Crear Asignación de Plan', value: 'crear' },
                 { name: '≡ Listar Asignaciones', value: 'listar' },
                 { name: '≡ Cancelar Plan de Cliente', value: 'cancelar' },
+                { name: '↻ Renovar Plan de Cliente', value: 'renovar' },
                 new inquirer.Separator(),
                 { name: '⬅️  Volver', value: 'volver' },
             ],
@@ -42,6 +43,9 @@ async function menuAsignacion() {
             break;
         case 'cancelar':
             await cancelarPlan();
+        case 'renovar':
+            await renovarPlan();
+        
             break;
         case 'volver':
             return;
@@ -124,6 +128,36 @@ async function cancelarPlan() {
             const resultado = await AsignacionService.cancelar(Number(id));
             console.log(chalk.green(`\n✅ ${resultado.mensaje}`));
         }
+    } catch (error) {
+        console.log(chalk.red(error.message));
+    }
+    await pausar();
+}
+async function renovarPlan() {
+    try {
+        const { id } = await inquirer.prompt([
+            { type: 'input', name: 'id', message: 'ID de la asignación a renovar:' },
+        ]);
+
+        console.log(chalk.cyan('\n--- Datos del nuevo contrato ---'));
+        const datosContrato = await inquirer.prompt([
+            { type: 'input', name: 'condiciones', message: 'Condiciones del nuevo contrato:' },
+            { type: 'input', name: 'duracion_semanas', message: 'Duración en semanas:' },
+            { type: 'input', name: 'precio', message: 'Precio del nuevo contrato:' },
+            { type: 'input', name: 'fecha_inicio', message: 'Fecha de inicio (YYYY-MM-DD):' },
+            { type: 'input', name: 'fecha_fin', message: 'Fecha de fin (YYYY-MM-DD):' },
+        ]);
+
+        const datosConvertidos = {
+            condiciones: datosContrato.condiciones,
+            duracion_semanas: Number(datosContrato.duracion_semanas),
+            precio: Number(datosContrato.precio),
+            fecha_inicio: datosContrato.fecha_inicio,
+            fecha_fin: datosContrato.fecha_fin,
+        };
+
+        const resultado = await AsignacionService.renovar(Number(id), datosConvertidos);
+        console.log(chalk.green(`\n✅ ${resultado.mensaje}, nuevo contrato id ${resultado.contratoNuevo.id}`));
     } catch (error) {
         console.log(chalk.red(error.message));
     }

@@ -36,7 +36,7 @@ class AsignacionService {
 
     return asignaciones.map((asignacion) => {
         const contratoRelacionado = contratos.find(
-            (contrato) => contrato.cliente_plan_id === asignacion.id
+            (contrato) => contrato.cliente_plan_id === asignacion.id && contrato.estado === 'activo'
         );
         return { ...asignacion, contrato: contratoRelacionado };
     });
@@ -72,6 +72,40 @@ class AsignacionService {
         connection.release();
     }
     }
+    
+    static async renovar(id, datosNuevoContrato) {
+    const connection = await conexion.getConnection();
+    try {
+        await connection.beginTransaction();
+
+        const asignacion = await clientePlanRepository.buscarPorId(id);
+        if (!asignacion) {
+            throw new Error(`❌ No existe una asignación con id ${id}`);
+        }
+
+        await connection.query(
+            "UPDATE contratos SET estado = 'finalizado' WHERE cliente_plan_id = ? AND estado = 'activo'",
+            [id]
+        );
+
+        await connection.query(
+            "UPDATE cliente_plan SET estado = 'renovado' WHERE id = ?",
+            [id]
+        );
+
+        datosNuevoContrato.cliente_plan_id = id;
+        const contratoNuevo = ContratoFactory.crear(datosNuevoContrato);
+        await contratoRepository.crear(contratoNuevo, connection);
+
+        await connection.commit();
+        return { mensaje: `Asignación ${id} renovada`, contratoNuevo };
+    } catch (error) {
+        await connection.rollback();
+        throw error;
+    } finally {
+        connection.release();
+    }
+}
 }
 
 module.exports = AsignacionService;
