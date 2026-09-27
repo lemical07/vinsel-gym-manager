@@ -2,6 +2,7 @@ const inquirer = require('inquirer');
 const chalk = require('chalk');
 const menuClientes = require('./clientes.command');
 const menuPlanEntrenamiento = require('./planes.command.js');
+const menuAsignacion = require('./asignacion.command.js');
 
 function mostrarBanner() {
   console.log(chalk.cyan('═'.repeat(40)));
@@ -31,6 +32,8 @@ async function menuPrincipal() {
         new inquirer.Separator(),
         { name: 'Gestión de Plan de Entrenamiento', value: 'plan' },
         new inquirer.Separator(),
+        { name: 'Asiganción de Plan por Cliente', value: 'asignacion' },
+        new inquirer.Separator(),
         { name: 'Salir', value: 'salir' },
       ],
     },
@@ -42,6 +45,9 @@ async function menuPrincipal() {
       break;
     case 'plan':
       await menuPlanEntrenamiento();
+      break;
+    case 'asignacion':
+      await menuAsignacion();
       break;
     case 'salir':
       console.clear();
