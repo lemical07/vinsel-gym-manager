@@ -29,6 +29,18 @@ class AsignacionService {
             connection.release();
         }
     }
+
+    static async listar() {
+    const asignaciones = await clientePlanRepository.listar();
+    const contratos = await contratoRepository.listar();
+
+    return asignaciones.map((asignacion) => {
+        const contratoRelacionado = contratos.find(
+            (contrato) => contrato.cliente_plan_id === asignacion.id
+        );
+        return { ...asignacion, contrato: contratoRelacionado };
+    });
+}
 }
 
 module.exports = AsignacionService;
