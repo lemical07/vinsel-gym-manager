@@ -72,7 +72,7 @@ class AsignacionService {
         connection.release();
     }
     }
-    
+
     static async renovar(id, datosNuevoContrato) {
     const connection = await conexion.getConnection();
     try {
@@ -99,6 +99,35 @@ class AsignacionService {
 
         await connection.commit();
         return { mensaje: `Asignación ${id} renovada`, contratoNuevo };
+    } catch (error) {
+        await connection.rollback();
+        throw error;
+    } finally {
+        connection.release();
+    }
+    }
+    static async finalizar(id) {
+    const connection = await conexion.getConnection();
+    try {
+        await connection.beginTransaction();
+
+        const asignacion = await clientePlanRepository.buscarPorId(id);
+        if (!asignacion) {
+            throw new Error(`❌ No existe una asignación con id ${id}`);
+        }
+
+        await connection.query(
+            "UPDATE cliente_plan SET estado = 'finalizado' WHERE id = ?",
+            [id]
+        );
+
+        await connection.query(
+            "UPDATE contratos SET estado = 'finalizado' WHERE cliente_plan_id = ? AND estado = 'activo'",
+            [id]
+        );
+
+        await connection.commit();
+        return { mensaje: `Asignación ${id} y su contrato fueron finalizados` };
     } catch (error) {
         await connection.rollback();
         throw error;

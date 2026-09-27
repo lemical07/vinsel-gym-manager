@@ -28,6 +28,7 @@ async function menuAsignacion() {
                 { name: '≡ Listar Asignaciones', value: 'listar' },
                 { name: '≡ Cancelar Plan de Cliente', value: 'cancelar' },
                 { name: '↻ Renovar Plan de Cliente', value: 'renovar' },
+                { name: '✔ Finalizar Plan de Cliente', value: 'finalizar' },
                 new inquirer.Separator(),
                 { name: '⬅️  Volver', value: 'volver' },
             ],
@@ -45,7 +46,8 @@ async function menuAsignacion() {
             await cancelarPlan();
         case 'renovar':
             await renovarPlan();
-        
+        case 'finalizar':
+            await finalizarPlan();        
             break;
         case 'volver':
             return;
@@ -158,6 +160,23 @@ async function renovarPlan() {
 
         const resultado = await AsignacionService.renovar(Number(id), datosConvertidos);
         console.log(chalk.green(`\n✅ ${resultado.mensaje}, nuevo contrato id ${resultado.contratoNuevo.id}`));
+    } catch (error) {
+        console.log(chalk.red(error.message));
+    }
+    await pausar();
+}
+async function finalizarPlan() {
+    try {
+        const { id, confirmar } = await inquirer.prompt([
+            { type: 'input', name: 'id', message: 'ID de la asignación a finalizar:' },
+            { type: 'confirm', name: 'confirmar', message: '¿Confirmás que el plan llegó a su fin?', default: false },
+        ]);
+        if (!confirmar) {
+            console.log(chalk.yellow('⚠️  Finalización abortada'));
+        } else {
+            const resultado = await AsignacionService.finalizar(Number(id));
+            console.log(chalk.green(`\n✅ ${resultado.mensaje}`));
+        }
     } catch (error) {
         console.log(chalk.red(error.message));
     }
