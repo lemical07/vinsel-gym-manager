@@ -40,7 +40,38 @@ class AsignacionService {
         );
         return { ...asignacion, contrato: contratoRelacionado };
     });
-}
+    }
+
+
+    static async cancelar(id) {
+    const connection = await conexion.getConnection();
+    try {
+        await connection.beginTransaction();
+
+        const asignacion = await clientePlanRepository.buscarPorId(id);
+        if (!asignacion) {
+            throw new Error(`❌ No existe una asignación con id ${id}`);
+        }
+
+        await connection.query(
+            "UPDATE cliente_plan SET estado = 'cancelado' WHERE id = ?",
+            [id]
+        );
+
+        await connection.query(
+            "UPDATE contratos SET estado = 'cancelado' WHERE cliente_plan_id = ?",
+            [id]
+        );
+
+        await connection.commit();
+        return { mensaje: `Asignación ${id} y su contrato fueron cancelados` };
+    } catch (error) {
+        await connection.rollback();
+        throw error;
+    } finally {
+        connection.release();
+    }
+    }
 }
 
 module.exports = AsignacionService;

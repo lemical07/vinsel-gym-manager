@@ -26,6 +26,7 @@ async function menuAsignacion() {
             choices: [
                 { name: '+ Crear Asignación de Plan', value: 'crear' },
                 { name: '≡ Listar Asignaciones', value: 'listar' },
+                { name: '≡ Cancelar Plan de Cliente', value: 'cancelar' },
                 new inquirer.Separator(),
                 { name: '⬅️  Volver', value: 'volver' },
             ],
@@ -38,6 +39,9 @@ async function menuAsignacion() {
             break;
         case 'listar':
             await listarAsignacion();
+            break;
+        case 'cancelar':
+            await cancelarPlan();
             break;
         case 'volver':
             return;
@@ -102,6 +106,23 @@ async function listarAsignacion() {
                     precio: asignacion.contrato ? asignacion.contrato.precio : '-',
                 })),
             );
+        }
+    } catch (error) {
+        console.log(chalk.red(error.message));
+    }
+    await pausar();
+}
+async function cancelarPlan() {
+    try {
+        const { id, confirmar } = await inquirer.prompt([
+            { type: 'input', name: 'id', message: 'ID de la asignación a cancelar:' },
+            { type: 'confirm', name: 'confirmar', message: '¿Confirmás la cancelación?', default: false },
+        ]);
+        if (!confirmar) {
+            console.log(chalk.yellow('⚠️  Cancelación abortada'));
+        } else {
+            const resultado = await AsignacionService.cancelar(Number(id));
+            console.log(chalk.green(`\n✅ ${resultado.mensaje}`));
         }
     } catch (error) {
         console.log(chalk.red(error.message));
