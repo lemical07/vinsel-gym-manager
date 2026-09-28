@@ -46,6 +46,10 @@ class ClienteService {
     await this.buscarPorId(id);
     await clienteRepository.eliminar(id);
   }
+  // uso exclusivo de pago/finanzas
+  static async buscarPorNombreParcial(texto) {
+    return clienteRepository.buscarPorNombreParcial(texto);
+}
 }
 
 module.exports = ClienteService;
