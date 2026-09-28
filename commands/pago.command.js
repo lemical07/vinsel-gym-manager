@@ -43,7 +43,6 @@ async function menuFinanzas() {
     }
 }
 
-// ---------- CREAR ----------
 
 async function menuCrearPago() {
     while (true) {
@@ -80,7 +79,8 @@ async function crearPagoIngreso() {
         ]);
 
         datosCrudos.tipo = 'ingreso';
-        datosCrudos.contrato_id = datosCrudos.contrato_id || null;
+        datosCrudos.contrato_id = datosCrudos.contrato_id ? Number(datosCrudos.contrato_id) : null;
+        datosCrudos.monto = Number(datosCrudos.monto);
 
         const ingreso = await PagoService.crear(datosCrudos);
         console.log(`\n✅ Ingreso creado con id ${ingreso.id}: $${ingreso.monto}`);
@@ -101,6 +101,7 @@ async function crearPagoEgreso() {
 
         datosCrudos.tipo = 'egreso';
         datosCrudos.contrato_id = null;
+        datosCrudos.monto = Number(datosCrudos.monto);
 
         const egreso = await PagoService.crear(datosCrudos);
         console.log(`\n✅ Egreso creado con id ${egreso.id}: $${egreso.monto}`);
@@ -110,7 +111,7 @@ async function crearPagoEgreso() {
     await pausar();
 }
 
-// ---------- LISTAR ----------
+
 
 async function menuListarPago() {
     while (true) {
@@ -187,7 +188,7 @@ async function listarPagoEgreso() {
     await pausar();
 }
 
-// ---------- BALANCE ----------
+
 
 async function menuBalance() {
     while (true) {
@@ -272,8 +273,6 @@ async function porNombre() {
     }
     await pausar();
 }
-
-// ---------- EDITAR ----------
 
 async function menuEditarPago() {
     while (true) {

@@ -41,11 +41,11 @@ class ClienteRepository {
     //uso exclusivo de pago/finanza
     async buscarPorNombreParcial(texto) {
     const [filas] = await conexion.query(
-        'SELECT * FROM clientes WHERE nombre LIKE ? ORDER BY nombre, apellido',
-        [`%${texto}%`]
+        'SELECT * FROM clientes WHERE nombre LIKE ? OR apellido LIKE ? ORDER BY nombre, apellido',
+        [`%${texto}%`, `%${texto}%`]
     );
     return filas;
-}
+    }
 
 }   
 
