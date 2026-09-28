@@ -4,6 +4,7 @@ const menuClientes = require('./clientes.command');
 const menuPlanEntrenamiento = require('./planes.command.js');
 const menuAsignacion = require('./asignacion.command.js');
 const menuSeguimiento = require('./seguimiento.command.js');
+const menuFinanzas = require('./pago.command.js');
 
 function mostrarBanner() {
   console.log(chalk.cyan('═'.repeat(40)));
@@ -38,6 +39,8 @@ async function menuPrincipal() {
         new inquirer.Separator(),
         { name: 'Gestión de Seguimiento', value: 'seguimiento' },
         new inquirer.Separator(),
+        { name: 'Gestión de Finanzas', value: 'finanzas' },
+        new inquirer.Separator(),
         { name: 'Salir', value: 'salir' },
       ],
     },
@@ -54,6 +57,9 @@ async function menuPrincipal() {
       await menuAsignacion();
     case 'seguimiento':
       await menuSeguimiento();
+      break;
+    case 'finanzas':
+      await menuFinanzas();
       break;
     case 'salir':
       console.clear();
