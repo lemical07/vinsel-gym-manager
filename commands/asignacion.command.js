@@ -26,7 +26,7 @@ async function menuAsignacion() {
             choices: [
                 { name: '+ Crear Asignación de Plan', value: 'crear' },
                 { name: '≡ Listar Asignaciones', value: 'listar' },
-                { name: '≡ Cancelar Plan de Cliente', value: 'cancelar' },
+                { name: 'x Cancelar Plan de Cliente', value: 'cancelar' },
                 { name: '↻ Renovar Plan de Cliente', value: 'renovar' },
                 { name: '✔ Finalizar Plan de Cliente', value: 'finalizar' },
                 new inquirer.Separator(),

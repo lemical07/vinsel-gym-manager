@@ -25,7 +25,7 @@ async function menuFinanzas() {
             choices: [
                 { name: '+ Registrar pago', value: 'registrar' },
                 { name: '≡ Listar pagos', value: 'listar' },
-                { name: ' Balance', value: 'balance' },
+                { name: '$ Balance', value: 'balance' },
                 { name: '✎ Editar pago', value: 'editar' },
                 new inquirer.Separator(),
                 { name: '⬅️  Volver', value: 'volver' },
@@ -198,8 +198,8 @@ async function menuBalance() {
             name: 'opcion',
             message: 'Seleccioná una opción:',
             choices: [
-                { name: '✎ Por fecha', value: 'fecha' },
-                { name: '✎ Por cliente', value: 'cliente' },
+                { name: '$ Por fecha', value: 'fecha' },
+                { name: '$ Por cliente', value: 'cliente' },
                 new inquirer.Separator(),
                 { name: '⬅️  Volver', value: 'volver' },
             ],
