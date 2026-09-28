@@ -3,9 +3,9 @@ const chalk = require('chalk');
 const PlanService = require('../services/PlanService.js');
 
 function mostrarBanner() {
-    console.log(chalk.green('═'.repeat(40)));
-    console.log(chalk.green.bold('    >>>>> PLAN DE ENTRENAMIENTO <<<<<    '));
-    console.log(chalk.green('═'.repeat(40)));
+    console.log(chalk.cyan('═'.repeat(40)));
+    console.log(chalk.cyan.bold('    >>>>> PLAN DE ENTRENAMIENTO <<<<<    '));
+    console.log(chalk.cyan('═'.repeat(40)));
 }
 
 async function menuPlanEntrenamiento() {

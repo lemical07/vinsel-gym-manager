@@ -58,6 +58,7 @@ async function menuPrincipal() {
       break;
     case 'asignacion':
       await menuAsignacion();
+      break;
     case 'seguimiento':
       await menuSeguimiento();
       break;

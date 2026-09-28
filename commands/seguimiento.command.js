@@ -4,9 +4,9 @@ const SeguimientoService = require('../services/SeguimientoService.js');
 const {crearHipervinculo } = require('../utils/consola.js');
 
 function mostrarBanner() {
-    console.log(chalk.magenta('═'.repeat(40)));
-    console.log(chalk.magenta.bold('>>>>> SEGUIMIENTO FÍSICO DEL CLIENTE <<<<<'));
-    console.log(chalk.magenta('═'.repeat(40)));
+    console.log(chalk.cyan('═'.repeat(40)));
+    console.log(chalk.cyan.bold('>>>>> SEGUIMIENTO FÍSICO DEL CLIENTE <<<<<'));
+    console.log(chalk.cyan('═'.repeat(40)));
 }
 
 async function pausar() {

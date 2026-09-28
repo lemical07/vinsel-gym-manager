@@ -3,9 +3,9 @@ const chalk = require('chalk');
 const ClienteService = require('../services/ClienteService.js');
 
 function mostrarBanner() {
-    console.log(chalk.green('═'.repeat(40)));
-    console.log(chalk.green.bold('     >>>>> GESTIÓN DE CLIENTE <<<<<     '));
-    console.log(chalk.green('═'.repeat(40)));
+    console.log(chalk.cyan('═'.repeat(40)));
+    console.log(chalk.cyan.bold('     >>>>> GESTIÓN DE CLIENTE <<<<<     '));
+    console.log(chalk.cyan('═'.repeat(40)));
 }
 
 async function menuClientes() {

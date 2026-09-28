@@ -3,9 +3,9 @@ const chalk = require('chalk');
 const NutricionService = require('../services/NutricionService.js');
 
 function mostrarBanner() {
-    console.log(chalk.yellow('═'.repeat(40)));
-    console.log(chalk.yellow.bold('     >>>>> GESTIÓN DE NUTRICIÓN <<<<<     '));
-    console.log(chalk.yellow('═'.repeat(40)));
+    console.log(chalk.cyan('═'.repeat(40)));
+    console.log(chalk.cyan.bold('     >>>>> GESTIÓN DE NUTRICIÓN <<<<<     '));
+    console.log(chalk.cyan('═'.repeat(40)));
 }
 
 async function pausar() {
