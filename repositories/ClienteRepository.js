@@ -38,6 +38,14 @@ class ClienteRepository {
     const [resultado] = await conexion.query('SELECT * FROM clientes WHERE email = ?', [email]);
     return resultado[0];
     }
+    //uso exclusivo de pago/finanza
+    async buscarPorNombreParcial(texto) {
+    const [filas] = await conexion.query(
+        'SELECT * FROM clientes WHERE nombre LIKE ? ORDER BY nombre, apellido',
+        [`%${texto}%`]
+    );
+    return filas;
+}
 
 }   
 
