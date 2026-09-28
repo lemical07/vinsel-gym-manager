@@ -18,7 +18,7 @@ El proyecto está desarrollado en Node.js aplicando Programación Orientada a Ob
 
 1. Clona el repositorio:
 ```bash
-   git clone <url-de-tu-repositorio>
+   git clone https://github.com/lemical07/vinsel-gym-manager.git
    cd vinsel-gym-manager
 ```
 
@@ -172,6 +172,6 @@ La planeación del proyecto (roles, sprints, historias de usuario) se gestionó 
 
 ## 👤 Créditos
 
-Desarrollado por Selvin Eladio Lem Ical — [GitHub](https://github.com/lemical07)
+Desarrollado por — [Lem Ical](https://github.com/lemical07)
 
 Proyecto individual, desarrollado como parte de la formación en Desarrollador FullStack.
