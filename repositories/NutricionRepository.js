@@ -18,9 +18,9 @@ class NutricionRepository {
 
     async crearAlimento(alimento, conexionExterna = conexion) {
         const [resultado] = await conexionExterna.query(
-            `INSERT INTO alimentos_registro (plan_nutricion_id, fecha, nombre_alimento, calorias)
-             VALUES (?, ?, ?, ?)`,
-            [alimento.plan_nutricion_id, alimento.fecha, alimento.nombre_alimento, alimento.calorias]
+            `INSERT INTO alimentos_registro (plan_nutricion_id, fecha, nombre_alimento, calorias, peso_kg)
+             VALUES (?, ?, ?, ?, ?)`,
+            [alimento.plan_nutricion_id, alimento.fecha, alimento.nombre_alimento, alimento.calorias, alimento.peso_kg]
         );
         alimento.asignarId(resultado.insertId);
         return alimento;
