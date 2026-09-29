@@ -66,13 +66,6 @@ class PagoRepository {
     );
     return filas;
     }
-    async buscarPorNombre(texto) {
-    const [filas] = await conexion.query(
-        'SELECT * FROM clientes WHERE nombre LIKE ?',
-        [`%${texto}%`]
-    );
-    return filas;
-}
 }   
 
 

@@ -71,7 +71,7 @@ class PagoService {
 
     return { total_ingresos, total_egresos, balance };
   }
-  //buscar nombre y enlistar, luego seleccionar
+  //enlistar, luego seleccionar
   static async balancePorCliente(cliente_id) {
     if (!Number.isInteger(cliente_id) || cliente_id <= 0) {
         throw new Error('❌ El id de cliente debe ser un entero positivo');
