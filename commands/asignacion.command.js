@@ -45,8 +45,10 @@ async function menuAsignacion() {
             break;
         case 'cancelar':
             await cancelarPlan();
+            break;
         case 'renovar':
             await renovarPlan();
+            break;
         case 'finalizar':
             await finalizarPlan();        
             break;
