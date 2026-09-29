@@ -1,5 +1,5 @@
-DROP DATABASE IF EXISTS vinsel_gym_manager;
-CREATE DATABASE IF NOT EXISTS vinsel_gym_manager;
+-- DROP DATABASE IF EXISTS vinsel_gym_manager;
+-- CREATE DATABASE IF NOT EXISTS vinsel_gym_manager;
 USE vinsel_gym_manager;
 
 CREATE TABLE clientes (
@@ -36,7 +36,7 @@ FOREIGN KEY (plan_id) REFERENCES planes_entrenamiento(id)
 
 CREATE TABLE contratos (
 id INT AUTO_INCREMENT PRIMARY KEY,
-cliente_plan_id INT NOT NULL UNIQUE,
+cliente_plan_id INT NOT NULL,
 condiciones TEXT,
 duracion_semanas INT NOT NULL,
 precio DECIMAL(10,2) NOT NULL,
@@ -94,3 +94,13 @@ descripcion VARCHAR(200),
 
 FOREIGN KEY (contrato_id) REFERENCES contratos(id)
 ) ENGINE=InnoDB;
+
+
+SELECT * FROM clientes ORDER BY id DESC;
+SELECT * FROM planes_entrenamiento ORDER BY id DESC;
+SELECT * FROM cliente_plan ORDER BY id DESC;
+SELECT * FROM contratos ORDER BY id DESC;
+SELECT * FROM seguimiento_fisico ORDER BY id DESC;
+SELECT * FROM planes_nutricion ORDER BY id DESC;
+SELECT * FROM alimentos_registro ORDER BY id DESC;
+SELECT * FROM pagos;
