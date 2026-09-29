@@ -96,6 +96,7 @@ async function registrarAlimento() {
             { type: 'input', name: 'fecha', message: 'Fecha (YYYY-MM-DD):' },
             { type: 'input', name: 'nombre_alimento', message: 'Nombre del alimento:' },
             { type: 'input', name: 'calorias', message: 'Calorías:' },
+            { type: 'input', name: 'peso_kg', message: 'Peso en Kg:' },
         ]);
 
         const alimento = await NutricionService.registrarAlimento({
@@ -103,6 +104,7 @@ async function registrarAlimento() {
             fecha: datos.fecha,
             nombre_alimento: datos.nombre_alimento,
             calorias: Number(datos.calorias),
+            peso_kg: Number(datos.peso_kg),
         });
         console.log(chalk.green(`\n✅ Alimento registrado con id ${alimento.id}`));
     } catch (error) {
