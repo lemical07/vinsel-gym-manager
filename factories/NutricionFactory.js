@@ -28,14 +28,20 @@ class NutricionFactory {
     static crearAlimento(datosCrudos) {
         const { 
             plan_nutricion_id, 
-            fecha, nombre_alimento, 
-            calorias 
+            fecha, 
+            nombre_alimento, 
+            calorias,
+            peso_kg
         } = datosCrudos;
+
+        const pesoKgConvertido = Number(peso_kg);
+
         return new AlimentoRegistro(
             plan_nutricion_id, 
             convertirFecha(fecha), 
             nombre_alimento, 
-            calorias
+            calorias,
+            pesoKgConvertido
         );
     }
 }
