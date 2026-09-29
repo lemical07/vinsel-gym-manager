@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 const chalk = require('chalk');
 const NutricionService = require('../services/NutricionService.js');
+const { formatearFecha } = require('../utils/fecha.js');
 
 function mostrarBanner() {
     console.log(chalk.cyan('═'.repeat(40)));
@@ -70,9 +71,9 @@ async function crearPlan() {
         const datos = await inquirer.prompt([
             { type: 'input', name: 'cliente_plan_id', message: 'Id de la asignación (cliente-plan):' },
             { type: 'input', name: 'nombre', message: 'Nombre del plan de alimentación:' },
-            { type: 'input', name: 'meta_calorica', message: 'Meta calórica diaria (opcional):' },
-            { type: 'input', name: 'fecha_inicio', message: 'Fecha de inicio (YYYY-MM-DD):' },
-            { type: 'input', name: 'fecha_fin', message: 'Fecha de fin (opcional, YYYY-MM-DD):' },
+            { type: 'input', name: 'meta_calorica', message: 'Meta calórica diaria:' },
+            { type: 'input', name: 'fecha_inicio', message: 'Fecha de inicio :' },
+            { type: 'input', name: 'fecha_fin', message: 'Fecha de fin :' },
         ]);
 
         const plan = await NutricionService.crearPlan({
@@ -93,7 +94,7 @@ async function registrarAlimento() {
     try {
         const datos = await inquirer.prompt([
             { type: 'input', name: 'plan_nutricion_id', message: 'Id del plan de alimentación:' },
-            { type: 'input', name: 'fecha', message: 'Fecha (YYYY-MM-DD):' },
+            { type: 'input', name: 'fecha', message: 'Fecha:' },
             { type: 'input', name: 'nombre_alimento', message: 'Nombre del alimento:' },
             { type: 'input', name: 'calorias', message: 'Calorías:' },
             { type: 'input', name: 'peso_kg', message: 'Peso en Kg:' },
@@ -149,8 +150,8 @@ async function listarPlanes() {
                 cliente_plan_id: p.cliente_plan_id,
                 nombre: p.nombre,
                 meta_calorica: p.meta_calorica ?? '-',
-                fecha_inicio: p.fecha_inicio,
-                fecha_fin: p.fecha_fin ?? '-',
+                fecha_inicio:formatearFecha(p.fecha_inicio),
+                fecha_fin: formatearFecha(p.fecha_fin ?? '-'),
             })));
         }
     } catch (error) {
@@ -191,7 +192,7 @@ async function editarAlimento() {
             : String(alimento.fecha).slice(0, 10);
 
         const datos = await inquirer.prompt([
-            { type: 'input', name: 'fecha', message: 'Fecha (YYYY-MM-DD):', default: fechaActual },
+            { type: 'input', name: 'fecha', message: 'Fecha:', default: fechaActual },
             { type: 'input', name: 'nombre_alimento', message: 'Nombre del alimento:', default: alimento.nombre_alimento },
             { type: 'input', name: 'calorias', message: 'Calorías:', default: String(alimento.calorias) },
         ]);

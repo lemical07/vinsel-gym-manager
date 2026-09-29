@@ -2,6 +2,7 @@ const inquirer = require('inquirer');
 const chalk = require('chalk');
 const SeguimientoService = require('../services/SeguimientoService.js');
 const {crearHipervinculo } = require('../utils/consola.js');
+const { formatearFecha } = require('../utils/fecha.js');
 
 function mostrarBanner() {
     console.log(chalk.cyan('═'.repeat(40)));
@@ -54,12 +55,12 @@ async function crearSeguimiento() {
     try {
         const datos = await inquirer.prompt([
             { type: 'input', name: 'cliente_plan_id', message: 'Id de la asignación (cliente-plan):' },
-            { type: 'input', name: 'fecha', message: 'Fecha del registro (YYYY-MM-DD):' },
+            { type: 'input', name: 'fecha', message: 'Fecha del registro:' },
             { type: 'input', name: 'peso_kg', message: 'Peso (kg):' },
-            { type: 'input', name: 'grasa_corporal', message: 'Grasa corporal % (opcional, Enter para omitir):' },
-            { type: 'input', name: 'medidas', message: 'Medidas (opcional, ej. "cintura: 80cm"):' },
-            { type: 'input', name: 'foto_ruta', message: 'Ruta de la foto (opcional):' },
-            { type: 'input', name: 'comentarios', message: 'Comentarios (opcional):' },
+            { type: 'input', name: 'grasa_corporal', message: 'Grasa corporal:' },
+            { type: 'input', name: 'medidas', message: 'Medida:' },
+            { type: 'input', name: 'foto_ruta', message: 'Ruta de la foto:' },
+            { type: 'input', name: 'comentarios', message: 'Comentarios:' },
         ]);
 
         const datosConvertidos = {
@@ -94,7 +95,7 @@ async function listarSeguimiento() {
             console.table(
                 registros.map((r) => ({
                     id_seguimiento_fisico: r.id,
-                    fecha: r.fecha,
+                    fecha: formatearFecha(r.fecha),
                     peso_kg: r.peso_kg,
                     grasa_corporal: r.grasa_corporal ?? '-',
                     medidas: r.medidas ?? '-',

@@ -1,4 +1,5 @@
 const Pago = require('../models/Pago.js');
+const { parsearFecha } = require('../utils/fecha.js');
 
 class PagoFactory {
   static crear(datosCrudos) {
@@ -13,7 +14,7 @@ class PagoFactory {
 
     const contratoIdConvertido = contrato_id ? Number(contrato_id) : null;
     const montoConvertido = Number(monto);
-    const fechaConvertida = new Date(`${fecha}T00:00:00`);
+    const fechaConvertida = parsearFecha(fecha);
 
     return new Pago(
       contratoIdConvertido, 

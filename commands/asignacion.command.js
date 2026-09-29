@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 const chalk = require('chalk');
 const AsignacionService = require('../services/AsignacionService.js');
+const { formatearFecha } = require('../utils/fecha.js');
 
 function mostrarBanner() {
     console.log(chalk.cyan('═'.repeat(40)));
@@ -68,8 +69,8 @@ async function crearAsignacion() {
             { type: 'input', name: 'condiciones', message: 'Condiciones del contrato:' },
             { type: 'input', name: 'duracion_semanas', message: 'Duración en semanas:' },
             { type: 'input', name: 'precio', message: 'Precio del contrato:' },
-            { type: 'input', name: 'fecha_inicio', message: 'Fecha de inicio (YYYY-MM-DD):' },
-            { type: 'input', name: 'fecha_fin', message: 'Fecha de fin (YYYY-MM-DD):' },
+            { type: 'input', name: 'fecha_inicio', message: 'Fecha de inicio:' },
+            { type: 'input', name: 'fecha_fin', message: 'Fecha de fin:' },
         ]);
 
         const datosAsignacion = {
@@ -146,8 +147,8 @@ async function renovarPlan() {
             { type: 'input', name: 'condiciones', message: 'Condiciones del nuevo contrato:' },
             { type: 'input', name: 'duracion_semanas', message: 'Duración en semanas:' },
             { type: 'input', name: 'precio', message: 'Precio del nuevo contrato:' },
-            { type: 'input', name: 'fecha_inicio', message: 'Fecha de inicio (YYYY-MM-DD):' },
-            { type: 'input', name: 'fecha_fin', message: 'Fecha de fin (YYYY-MM-DD):' },
+            { type: 'input', name: 'fecha_inicio', message: 'Fecha de inicio:' },
+            { type: 'input', name: 'fecha_fin', message: 'Fecha de fin:' },
         ]);
 
         const datosConvertidos = {

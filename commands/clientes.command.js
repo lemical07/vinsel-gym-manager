@@ -56,8 +56,8 @@ async function crearCliente() {
             { type: 'input', name: 'nombre', message: 'Nombre:' },
             { type: 'input', name: 'apellido', message: 'Apellido:' },
             { type: 'input', name: 'email', message: 'Email:' },
-            { type: 'input', name: 'telefono', message: 'Teléfono (opcional):' },
-            { type: 'input', name: 'fecha_nacimiento', message: 'Fecha de nacimiento (YYYY-MM-DD):' },
+            { type: 'input', name: 'telefono', message: 'Teléfono:' },
+            { type: 'input', name: 'fecha_nacimiento', message: 'Fecha de nacimiento:' },
         ]);
 
     const cliente = await ClienteService.crear(datosCrudos);
@@ -105,8 +105,8 @@ async function actualizarCliente() {
         { type: 'input', name: 'nombre', message: 'Nombre:' },
         { type: 'input', name: 'apellido', message: 'Apellido:' },
         { type: 'input', name: 'email', message: 'Email:' },
-        { type: 'input', name: 'telefono', message: 'Teléfono (opcional):' },
-        { type: 'input', name: 'fecha_nacimiento', message: 'Fecha de nacimiento (YYYY-MM-DD):' },
+        { type: 'input', name: 'telefono', message: 'Teléfono:' },
+        { type: 'input', name: 'fecha_nacimiento', message: 'Fecha de nacimiento:' },
     ]);
     const clienteActualizado = await ClienteService.actualizar(Number(id), datosCrudos);
     console.log(`✅ Cliente ${clienteActualizado.id} actualizado correctamente`);

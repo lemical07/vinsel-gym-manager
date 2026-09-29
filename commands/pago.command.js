@@ -74,7 +74,7 @@ async function crearPagoIngreso() {
             { type: 'input', name: 'contrato_id', message: 'Id del contrato:' },
             { type: 'input', name: 'categoria', message: 'Categoría:' },
             { type: 'input', name: 'monto', message: 'Monto:' },
-            { type: 'input', name: 'fecha', message: 'Fecha (YYYY-MM-DD):' },
+            { type: 'input', name: 'fecha', message: 'Fecha:' },
             { type: 'input', name: 'descripcion', message: 'Descripción:' },
         ]);
 
@@ -95,7 +95,7 @@ async function crearPagoEgreso() {
         const datosCrudos = await inquirer.prompt([
             { type: 'input', name: 'categoria', message: 'Categoría:' },
             { type: 'input', name: 'monto', message: 'Monto:' },
-            { type: 'input', name: 'fecha', message: 'Fecha (YYYY-MM-DD):' },
+            { type: 'input', name: 'fecha', message: 'Fecha:' },
             { type: 'input', name: 'descripcion', message: 'Descripción:' },
         ]);
 
@@ -217,8 +217,8 @@ async function menuBalance() {
 async function porFecha() {
     try {
         const { desde, hasta } = await inquirer.prompt([
-            { type: 'input', name: 'desde', message: 'Desde (YYYY-MM-DD):' },
-            { type: 'input', name: 'hasta', message: 'Hasta (YYYY-MM-DD):' },
+            { type: 'input', name: 'desde', message: 'Desde:' },
+            { type: 'input', name: 'hasta', message: 'Hasta:' },
         ]);
 
         const { total_ingresos, total_egresos, balance } = await PagoService.balancePorFechas(desde, hasta);
@@ -313,7 +313,7 @@ async function editarPago(tipo) {
         const datosCrudos = await inquirer.prompt([
             { type: 'input', name: 'categoria', message: 'Categoría:', default: pago.categoria },
             { type: 'input', name: 'monto', message: 'Monto:', default: String(pago.monto) },
-            { type: 'input', name: 'fecha', message: 'Fecha (YYYY-MM-DD):', default: fechaActual },
+            { type: 'input', name: 'fecha', message: 'Fecha Actual:', default: fechaActual },
             { type: 'input', name: 'descripcion', message: 'Descripción:', default: pago.descripcion || '' },
         ]);
 

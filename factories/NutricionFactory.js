@@ -1,11 +1,6 @@
 const PlanNutricion = require('../models/PlanNutricion.js');
 const AlimentoRegistro = require('../models/AlimentoRegistro.js');
-
-function convertirFecha(fecha) {
-    if (!fecha) return null;
-    const [anio, mes, dia] = fecha.split('-').map(Number);
-    return new Date(anio, mes - 1, dia);
-}
+const { parsearFecha } = require('../utils/fecha.js');
 
 class NutricionFactory {
     static crearPlan(datosCrudos) {
@@ -16,12 +11,15 @@ class NutricionFactory {
             fecha_inicio, 
             fecha_fin 
         } = datosCrudos;
+        const fechaInicioConvertida = parsearFecha(fecha_inicio);
+        const fechaFinConvertida = parsearFecha(fecha_fin);
+
         return new PlanNutricion(
             cliente_plan_id,
             nombre,
             meta_calorica,
-            convertirFecha(fecha_inicio),
-            fecha_fin ? convertirFecha(fecha_fin) : null
+            fechaInicioConvertida(fecha_inicio),
+            fecha_fin ? fechaFinConvertida(fecha_fin) : null
         );
     }
 

@@ -1,4 +1,5 @@
-const Cliente = require('../models/Cliente');
+const Cliente = require('../models/Cliente.js');
+const { parsearFecha } = require('../utils/fecha.js');
 
 class ClienteFactory {
   static crear(datosCrudos) {
@@ -10,8 +11,7 @@ class ClienteFactory {
       fecha_nacimiento,
       estado,
     } = datosCrudos;
-
-    const fechaNacimientoConvertida = new Date(fecha_nacimiento);
+    const fechaNacimientoConvertida = parsearFecha(fecha_nacimiento);
 
     return new Cliente(
       nombre,

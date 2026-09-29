@@ -1,4 +1,5 @@
 const Contrato = require('../models/Contrato.js');
+const { parsearFecha } = require('../utils/fecha.js');
 
 class ContratoFactory {
   static crear(datosCrudos) {
@@ -12,8 +13,8 @@ class ContratoFactory {
         estado
     } = datosCrudos;
 
-    const fechaInicioConvertida = new Date(fecha_inicio);
-    const fechaFinConvertida = new Date(fecha_fin);
+    const fechaInicioConvertida = parsearFecha(fecha_inicio);
+    const fechaFinConvertida = parsearFecha(fecha_fin);
     
     return new Contrato(
         cliente_plan_id, 

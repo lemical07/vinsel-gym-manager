@@ -53,8 +53,8 @@ async function pausar() {
 async function crearPlanEntrenamiento() {
     try {
         const datosCrudos = await inquirer.prompt([
-            { type: 'input', name: 'nombre', message: 'Nombre:' },
-            { type: 'input', name: 'duracion_semanas', message: 'Duración Semanal:' },
+            { type: 'input', name: 'nombre', message: 'Nombre del Plan:' },
+            { type: 'input', name: 'duracion_semanas', message: 'Duración en Semanas:' },
             { type: 'input', name: 'meta_fisica', message: 'Meta Física:' },
             { type: 'input', name: 'nivel', message: 'Nivel:' },
             { type: 'input', name: 'precio_base', message: 'Precio Base:' },
@@ -105,7 +105,7 @@ async function actualizarPlanEntrenamiento() {
                 message: 'ID del Plan a actualizar:' },
         ]);
     const datosCrudos = await inquirer.prompt([
-        { type: 'input', name: 'nombre', message: 'Nombre:' },
+        { type: 'input', name: 'nombre', message: 'Nombre de Plan:' },
         { type: 'input', name: 'duracion_semanas', message: 'Duración Semanal:' },
         { type: 'input', name: 'meta_fisica', message: 'Meta Física:' },
         { type: 'input', name: 'nivel', message: 'Nivel:' },
