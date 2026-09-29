@@ -4,8 +4,9 @@ class AlimentoRegistro {
     #fecha;
     #nombre_alimento;
     #calorias;
+    #peso_kg;
 
-    constructor(plan_nutricion_id, fecha, nombre_alimento, calorias) {
+    constructor(plan_nutricion_id, fecha, nombre_alimento, calorias, peso_kg) {
         if (!plan_nutricion_id || typeof plan_nutricion_id !== 'number' || !Number.isInteger(plan_nutricion_id)) {
             throw new Error('❌ El id del plan de alimentación es obligatorio');
         }
@@ -28,6 +29,7 @@ class AlimentoRegistro {
         }
         this.#nombre_alimento = nombre_alimento;
 
+        //calorias
         if (calorias === undefined || calorias === null || calorias === '') {
             throw new Error('❌ Las calorías son obligatorias');
         }
@@ -35,6 +37,18 @@ class AlimentoRegistro {
             throw new Error('⚠️ Las calorías deben ser un número entero positivo');
         }
         this.#calorias = calorias;
+
+        //peso kl
+        if (peso_kg === undefined || peso_kg === null || peso_kg === '') {
+            throw new Error('❌ El peso es obligatorio');
+        }
+        if (typeof peso_kg !== 'number' || isNaN(peso_kg)) {
+            throw new Error('❌ El peso debe ser un número');
+        }
+        if (peso_kg < 0 || peso_kg > 5) {
+            throw new Error('⚠️ El peso debe estar entre 20 y 300 kg');
+        }
+        this.#peso_kg = peso_kg;
     }
 
     asignarId(id) {
@@ -49,6 +63,7 @@ class AlimentoRegistro {
     get fecha() { return this.#fecha; }
     get nombre_alimento() { return this.#nombre_alimento; }
     get calorias() { return this.#calorias; }
+    get peso_kg() { return this.#peso_kg; }
 }
 
 module.exports = AlimentoRegistro;
