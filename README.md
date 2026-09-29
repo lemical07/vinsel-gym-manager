@@ -162,13 +162,14 @@ Los `Services` dependen de la abstracción que ofrece cada `Repository` (sus mé
 
 ## 🎥 Video explicativo
 
-[Ver video explicativo (YouTube)](#)
+[Ver video explicativo](https://drive.google.com/drive/folders/1sfF0Age3oCMTBCs-dDfBK6pEBt-0VfMC?usp=sharing)
 
 ## 📅 Planeación Scrum
 
 La planeación del proyecto (roles, sprints, historias de usuario) se gestionó en ClickUp y se documenta en el PDF adjunto siguiendo la plantilla proporcionada:
 
-[Ver documento de planeación Scrum (PDF)](docs/pdf/planeacion-scrum.pdf)
+
+[Ver documento de planeación Scrum](https://docs.google.com/document/d/1mMKomV3y2x2r01b0_GAREzCbcYxsropwV5ycpb1CqBA/edit?usp=sharing)
 
 ## 👤 Créditos
 
