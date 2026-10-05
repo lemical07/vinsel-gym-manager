@@ -8,6 +8,12 @@ VinSel Gym Manager permite registrar clientes, asignarles planes de entrenamient
 
 El proyecto está desarrollado en Node.js aplicando Programación Orientada a Objetos, principios SOLID y los patrones de diseño Repository y Factory, con persistencia en MySQL usando transacciones reales para garantizar la consistencia de los datos en operaciones críticas.
 
+## Exportación del progreso de un cliente
+
+En el menú principal, seleccione **Exportar progreso de cliente** e ingrese el ID o el nombre/apellido. Si la búsqueda por nombre coincide con varias personas, la CLI permite seleccionar el cliente correcto.
+
+La aplicación crea `exports/` si aún no existe y escribe un archivo con el formato `cliente_<nombre>_<apellido>_progreso.json`. El JSON incluye los datos del cliente, sus planes de entrenamiento y contratos, avances físicos, y planes nutricionales con alimentos agrupados por día y su total de calorías estimadas.
+
 ## ⚙️ Instalación y uso
 
 ### Requisitos previos

@@ -6,6 +6,7 @@ const menuAsignacion = require('./asignacion.command.js');
 const menuSeguimiento = require('./seguimiento.command.js');
 const menuFinanzas = require('./pago.command.js');
 const menuNutricion = require('./nutricion.command.js');
+const exportarProgreso = require('./exportar-progreso.command.js');
 
 function mostrarBanner() {
   console.log(chalk.cyan('═'.repeat(40)));
@@ -45,6 +46,8 @@ async function menuPrincipal() {
           new inquirer.Separator(),
           { name: 'Gestión de Nutrición', value: 'nutricion' },
           new inquirer.Separator(),
+          { name: 'Exportar progreso de cliente', value: 'exportar-progreso' },
+          new inquirer.Separator(),
           { name: 'Salir', value: 'salir' },
         ],
       },
@@ -68,6 +71,13 @@ async function menuPrincipal() {
         break;
       case 'nutricion':
         await menuNutricion();
+        break;
+      case 'exportar-progreso':
+        await exportarProgreso();
+        await inquirer.prompt([{
+          type: 'input',
+          name: 'continuar', message: '\nPresione Enter para continuar...',
+        }]);
         break;
       case 'salir':
         despedida();
